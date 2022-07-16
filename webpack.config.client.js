@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { HotModuleReplacementPlugin, NoEmitOnErrorsPlugin } from 'webpack'
+const path = require('path')
+const webpack = require('webpack')
 const CURRENT_WORKING_DIR = process.cwd()
 
 const config = {
@@ -8,10 +8,10 @@ const config = {
   devtool: 'eval-source-map',
   entry: [
     'webpack-hot-middleware/client?reload=true',
-    join(CURRENT_WORKING_DIR, 'client/main.js')
+    path.join(CURRENT_WORKING_DIR, 'client/main.js')
   ],
   output: {
-    path: join(CURRENT_WORKING_DIR , '/dist'),
+    path: path.join(CURRENT_WORKING_DIR , '/dist'),
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
@@ -31,8 +31,8 @@ const config = {
     ]
   },  
   plugins: [
-    new HotModuleReplacementPlugin(),
-    new NoEmitOnErrorsPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
   ],
   resolve: {
     alias: {
@@ -41,4 +41,4 @@ const config = {
   }
 }
 
-export default config
+module.exports = config

@@ -1,13 +1,13 @@
-import { join } from 'path'
+const path = require('path')
 const CURRENT_WORKING_DIR = process.cwd()
 
 const config = {
   mode: "production",
   entry: [
-    join(CURRENT_WORKING_DIR, 'client/main.js')
+    path.join(CURRENT_WORKING_DIR, 'client/main.js')
   ],
   output: {
-    path: join(CURRENT_WORKING_DIR , '/dist'),
+    path: path.join(CURRENT_WORKING_DIR , '/dist'),
     filename: 'bundle.js',
     publicPath: "/dist/"
   },
@@ -17,7 +17,7 @@ const config = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader'
+            'babel-loader'
         ]
       },
       {
@@ -28,4 +28,4 @@ const config = {
   }
 }
 
-export default config
+module.exports = config
